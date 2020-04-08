@@ -64,10 +64,10 @@
 <div class="col-md-6 col-sm-12">
   <div *ngIf='totalWorld' class="m-3">
   <h6 class="text-muted">World</h6>
-    <span class="badge badge-pill badge-primary">Total cases: {{totalWorld.cases.total | number}}</span>
-    <span class="badge badge-pill badge-success ">Recovered: {{totalWorld.cases.recovered | number}}</span>
+    <span class="badge badge-pill badge-primary m-1">Total cases: {{totalWorld.cases.total | number}}</span>
+    <span class="badge badge-pill badge-success m-1 ">Recovered: {{totalWorld.cases.recovered | number}}</span>
     <!-- <span class="badge badge-pill badge-danger ">Deaths: {{indData.deaths}}</span> -->
-    <span class="badge badge-pill badge-warning ">Active: {{totalWorld.cases.active | number}}</span>
+    <span class="badge badge-pill badge-danger m-1">Deaths: {{totalWorld.deaths.total  | number}}</span>
     <span class="cursor badge badge-pill badge-info " (click)='search(null)'>Refresh world Data</span>
   </div>
   <div #map  style="width:600px; height: 400px;"></div>
