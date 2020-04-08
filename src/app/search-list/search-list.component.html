@@ -18,13 +18,13 @@
     <tr *ngFor = "let item of searchList;let i =index;trackBy: trackByFn">
       <th scope="row">{{i+1}}</th>
       <td>{{item.country}}</td>
-      <td>{{item.cases}}</td>
-      <td class="text-success"><span *ngIf='item.todayCases > 0'>+</span>{{item.todayCases}}</td>
-      <td>{{item.deaths}}</td>
-      <td class="text-danger"><span *ngIf='item.todayDeaths > 0'>+</span>{{item.todayDeaths}}</td>
-      <td>{{item.active}}</td>
-      <td>{{item.recovered}}</td>
-      <td>{{item.critical}}</td>
+      <td>{{item.cases.total}}</td>
+      <td class="text-success"><span></span>{{item.cases.new}}</td>
+      <td>{{item.deaths.total}}</td>
+      <td class="text-danger"><span *ngIf='item.deaths'></span>{{item.deaths.new}}</td>
+      <td>{{item.cases.active}}</td>
+      <td>{{item.cases.recovered}}</td>
+      <td>{{item.cases.critical}}</td>
     </tr>
   </tbody>
 </table>

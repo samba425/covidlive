@@ -39,18 +39,20 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.country = []
     this.spinner = true;
     this.coronaService.getCountries().subscribe((res: any[]) => {
-      this.totalWorld = res.shift();      ;
-      this.searchList = res;
+      console.log('eeeeeeee',res)   
+      this.searchList = res['response'];
       if(data) {
         this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.value.country.toLowerCase()));
       }
-      this.searchList = this.searchList.sort((a,b) => b.cases - a.cases);
+      this.searchList = this.searchList.sort((a,b) => b.cases.total - a.cases.total);
+      this.totalWorld = this.searchList.shift();
+      this.searchList.shift();
       this.country.push(['Country', 'Popularity'])
       this.searchList.forEach((element,i) => {
         if(element.country === "USA") {          
-          this.country.push(["United States",element.cases]);
+          this.country.push(["United States",element.cases.total]);
         } else {
-          this.country.push([element.country,element.cases]);
+          this.country.push([element.country,element.cases.total]);
         }
       });
     this.spinner = false;
