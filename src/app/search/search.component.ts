@@ -33,7 +33,10 @@ export class SearchComponent implements OnInit, AfterViewInit {
   }
   
     ngAfterViewInit() {
-      google.charts.load('current', { 'packages': ['corechart']});
+      // google.charts.load('current', { 'packages': ['corechart']});
+      var myMapsApiKey = 'SomeMagicToSetThis';
+      // AIzaSyCU-9VkLPlvT7R1E3oDhFzxvcrT4GoLVSc
+google.charts.load('45', { mapsApiKey: myMapsApiKey, packages: [ 'corechart'] });
     }
   search(data) {
     this.country = []
