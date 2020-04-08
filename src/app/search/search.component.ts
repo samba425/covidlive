@@ -39,7 +39,6 @@ export class SearchComponent implements OnInit, AfterViewInit {
     this.country = []
     this.spinner = true;
     this.coronaService.getCountries().subscribe((res: any[]) => {
-      console.log('eeeeeeee',res)   
       this.searchList = res['response'];
       if(data) {
         this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.value.country.toLowerCase()));
