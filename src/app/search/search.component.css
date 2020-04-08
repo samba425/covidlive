@@ -2,3 +2,12 @@
     cursor: pointer;
 }
 
+
+
+.world {
+    background: #9999;
+    border: 2px solid white;
+    border-radius: 11px;
+    margin: 1%;
+    padding: 3%;
+}

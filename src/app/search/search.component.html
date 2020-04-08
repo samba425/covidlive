@@ -10,12 +10,38 @@
     <span class="badge badge-primary mr-3">Total Countries  {{searchList && searchList.length ?  searchList.length : 0}}</span>
     <span class="cursor badge badge-info p-1" (click)='search(null)'>Reload</span>
    </form>
-
-
-   <app-search-list *ngIf='!!searchList' [searchList]='searchList'></app-search-list>
-
    <div *ngIf='spinner' class="d-flex justify-content-center">
     <div class="spinner-border text-primary" role="status">
         <span class="sr-only">Loading...</span>
       </div>
   </div>
+   <div #map style="max-width: 900px; height: 500px;"></div>
+   <div #pieChart style="max-width: 900px; height: 500px;"></div>
+
+   
+
+<div *ngIf='totalWorld' class="world col-12">
+    <div class="row">
+      <div class="col-4">
+        
+          <div class="tile">
+            <div class="title" title="Total Confirmed Cases">Total</div>
+            <div class=" text-success active">{{totalWorld.cases}}</div>
+          </div>
+      </div>
+      <div class="col-4">
+          <div class="tile">
+            <div class="title" title="Active cases">Active</div>
+            <div class="text-primary active">{{totalWorld.active}}</div>
+          </div>
+      </div>
+      <div class="col-4">
+          <div class="tile">
+            <div class="title" title="Recovered cases">Recovered</div>
+            <div class="text-info recovered">{{totalWorld.recovered}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+   <app-search-list *ngIf='!!searchList' [searchList]='searchList'></app-search-list>
+
