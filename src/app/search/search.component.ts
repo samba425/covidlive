@@ -47,20 +47,22 @@ this.getIndiaData();
     google.visualization.events.addListener(chart1, 'regionClick',this.myClickHandler); 
   }
   myClickHandler(data) {
-console.log('323213123',data)
+// console.log('323213123',data)
   }
     drawChart() {  
       const data = google.visualization.arrayToDataTable(this.country);
       const options = {
         title: 'Covid Cases',
-        legend: {position: 'top'}
+        legend: {position: 'top'},
+        datalessRegionColor: 'transparent',
+          colorAxis: {colors: ['lightgreen', 'lightpink','orange','lightyellow','green','grey','skyblue']}
       };
     
       const chart = new google.visualization.PieChart(this.pieChart.nativeElement);  
       const chart1 = new google.visualization.GeoChart(this.map.nativeElement);
   
     chart.draw(data, options);
-    chart1.draw(data);
+    chart1.draw(data,options);
   }
   
     ngAfterViewInit() {

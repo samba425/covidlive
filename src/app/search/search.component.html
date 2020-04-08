@@ -2,22 +2,30 @@
 
 <div *ngIf='totalWorld' class="world col-12">
   <div class="row">
-    <div class="col-4">      
+    <div class="col-3">      
         <div class="tile">
           <div class="title" title="Total Confirmed Cases">Total</div>
           <div class=" text-success active">{{totalWorld.cases.total | number}}</div>
+          <div class=" text-success active">{{totalWorld.cases.new}}</div>
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <div class="tile">
           <div class="title" title="Active cases">Active</div>
           <div class="text-primary active">{{totalWorld.cases.active | number}}</div>
         </div>
     </div>
-    <div class="col-4">
+    <div class="col-3">
         <div class="tile">
           <div class="title" title="Recovered cases">Recovered</div>
           <div class="text-info recovered">{{totalWorld.cases.recovered | number}}</div>
+      </div>
+    </div>
+    <div class="col-3">
+        <div class="tile">
+          <div class="title" title="Recovered cases">Deaths</div>
+          <div class="text-danger recovered">{{totalWorld.deaths.total | number}}</div>
+          <div class="text-danger recovered">{{totalWorld.deaths.new}}</div>
       </div>
     </div>
   </div>
