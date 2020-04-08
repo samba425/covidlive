@@ -33,25 +33,41 @@
             <button class="btn btn-primary mr-1">Search</button>
         </div>
     </div>
-    <span class="badge badge-primary mr-3">Total Countries  {{searchList && searchList.length ?  searchList.length : 0}}</span>
-  <span class="cursor badge badge-info p-1" (click)='search(null)'>Refresh world Data</span>
+  <!-- <span class="cursor badge badge-info p-1" (click)='search(null)'>Refresh world Data</span> -->
    </form>
    <div *ngIf='spinner' class="d-flex justify-content-center">
     <div class="spinner-border text-primary" role="status">
         <span class="sr-only">Loading...</span>
       </div>
   </div>  
-<div *ngIf='indData' class="m-3">
-  <h6 class="text-muted">India</h6>
-  <span class="badge badge-pill badge-primary m-1">Total cases: {{indData.confirmed}}</span>
-  <span class="badge badge-pill badge-success  m-1">Recovered: {{indData.recovered}}</span>
-  <span class="badge badge-pill badge-danger  m-1">Deaths: {{indData.deaths}}</span>
-  <span class="badge badge-pill badge-warning  m-1">Recovered: {{indData.recovered}}</span>
-  <span class="cursor badge badge-pill badge-info  m-1" (click)='getIndiaData()'>Refresh India Data</span>
+
+<div class="row">
+<div class="col-md-6 col-sm-12">
+  <div *ngIf='indData' class="m-3">
+    <h6 class="text-muted">India</h6>
+    <span class="badge badge-pill badge-primary m-1">Total cases: {{indData.confirmed}}</span>
+    <span class="badge badge-pill badge-success  m-1">Recovered: {{indData.recovered}}</span>
+    <span class="badge badge-pill badge-danger  m-1">Deaths: {{indData.deaths}}</span>
+    <!-- <span class="badge badge-pill badge-warning  m-1">Recovered: {{indData.recovered}}</span> -->
+    <span class="cursor badge badge-pill badge-info  m-1" (click)='getIndiaData()'>Refresh India Data</span>
+  </div>
+  <div #ind style="max-width: 900px; height: 500px;"></div>
 </div>
-<div #ind style="max-width: 900px; height: 500px;"></div>
-<h6 class="text-muted">World</h6>
+<div class="col-md-6 col-sm-12">
+  <div *ngIf='totalWorld' class="m-3">
+  <h6 class="text-muted">World</h6>
+    <span class="badge badge-pill badge-primary">Total cases: {{totalWorld.cases.total | number}}</span>
+    <span class="badge badge-pill badge-success ">Recovered: {{totalWorld.cases.recovered | number}}</span>
+    <!-- <span class="badge badge-pill badge-danger ">Deaths: {{indData.deaths}}</span> -->
+    <span class="badge badge-pill badge-warning ">Active: {{totalWorld.cases.active | number}}</span>
+    <span class="cursor badge badge-pill badge-info " (click)='search(null)'>Refresh world Data</span>
+  </div>
   <div #map style="max-width: 900px; height: 500px;"></div>
+</div>
+</div>
+
   <div #pieChart style="max-width: 900px; height: 500px;"></div>
+  <span class="badge badge-primary mr-3">Total Countries  {{searchList && searchList.length ?  searchList.length : 0}}</span>
+
    <app-search-list *ngIf='!!searchList' [searchList]='searchList'></app-search-list>
 
