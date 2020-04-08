@@ -11,7 +11,11 @@ export class GitService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get(`${this.apiUrl}all`);
+    let headers: HttpHeaders = new HttpHeaders();
+    headers = headers.append('Accept', 'application/json');
+    headers = headers.append("x-rapidapi-host", 'corona-virus-world-and-india-data.p.rapidapi.com');
+    headers = headers.append("x-rapidapi-key", '9kQ7VQIZPvmshdJ8Tc7jIMQROOdhp1YZyppjsnSgDItnHZYhlP');
+        return this.http.get(`https://corona-virus-world-and-india-data.p.rapidapi.com/api_india`,{headers: headers});
   }
 
   getCountries() {

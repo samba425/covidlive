@@ -10,14 +10,41 @@ declare var google: any;
 export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('pieChart',{ static: false }) pieChart: ElementRef
   @ViewChild('map',{ static: false }) map: ElementRef
+  @ViewChild('ind',{ static: false }) ind: ElementRef
   searchList;
   spinner = false;
   country = []
+  india = []
   totalWorld;
- 
+  indData;
   constructor(private coronaService: GitService) {
  this.search(null);
+this.getIndiaData();
+  }
+
+  getIndiaData() {
+    this.india = [];
+    this.coronaService.getAll().subscribe((res) => {
+      this.indData = res['total_values']
+      this.india.push(['code', 'state', 'Cases'])
+        Object.keys(res['state_wise']).forEach((state) => {
+          if(res['state_wise'][state]['statecode'] && res['state_wise'][state]['confirmed']) this.india.push([`IN-${res['state_wise'][state]['statecode']}`, state, Number(res['state_wise'][state]['confirmed'])]);
+    })
+    this.showIndia();
+       })
+  }
+  showIndia() {
+      const data = google.visualization.arrayToDataTable(this.india);    
+      const chart1 = new google.visualization.GeoChart(this.ind.nativeElement);  
+    var options1 = { 
+      region: 'IN',
+      displayMode: 'regions',
+      resolution: 'provinces',
+      datalessRegionColor: 'transparent',
+        colorAxis: {colors: ['lightgreen', 'white','orange']}
     }
+    chart1.draw(data,options1);
+  }
     drawChart() {  
       const data = google.visualization.arrayToDataTable(this.country);
       const options = {
@@ -36,7 +63,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
       // google.charts.load('current', { 'packages': ['corechart']});
       var myMapsApiKey = 'SomeMagicToSetThis';
       // AIzaSyCU-9VkLPlvT7R1E3oDhFzxvcrT4GoLVSc
-google.charts.load('45', { mapsApiKey: myMapsApiKey, packages: [ 'corechart'] });
+google.charts.load('45', { mapsApiKey: myMapsApiKey, packages: [ 'corechart','geochart' ]});
     }
   search(data) {
     this.country = []
@@ -49,7 +76,7 @@ google.charts.load('45', { mapsApiKey: myMapsApiKey, packages: [ 'corechart'] })
       if(data) {
         this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.value.country.toLowerCase()));
       }
-      this.country.push(['Country', 'Popularity'])
+      this.country.push(['Country', 'Cases'])
       this.searchList.forEach((element,i) => {
         if(element.country === "USA") {          
           this.country.push(["United States",element.cases.total]);
