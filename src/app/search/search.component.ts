@@ -44,6 +44,10 @@ this.getIndiaData();
         colorAxis: {colors: ['lightgreen', 'white','orange']}
     }
     chart1.draw(data,options1);
+    google.visualization.events.addListener(chart1, 'regionClick',this.myClickHandler); 
+  }
+  myClickHandler(data) {
+console.log('323213123',data)
   }
     drawChart() {  
       const data = google.visualization.arrayToDataTable(this.country);

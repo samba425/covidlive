@@ -51,7 +51,7 @@
     <!-- <span class="badge badge-pill badge-warning  m-1">Recovered: {{indData.recovered}}</span> -->
     <span class="cursor badge badge-pill badge-info  m-1" (click)='getIndiaData()'>Refresh India Data</span>
   </div>
-  <div #ind style="max-width: 900px; height: 500px;"></div>
+  <div #ind style="width: 600px; height: 400px;"></div>
 </div>
 <div class="col-md-6 col-sm-12">
   <div *ngIf='totalWorld' class="m-3">
@@ -62,11 +62,11 @@
     <span class="badge badge-pill badge-warning ">Active: {{totalWorld.cases.active | number}}</span>
     <span class="cursor badge badge-pill badge-info " (click)='search(null)'>Refresh world Data</span>
   </div>
-  <div #map style="max-width: 900px; height: 500px;"></div>
+  <div #map  style="width:600px; height: 400px;"></div>
 </div>
 </div>
 
-  <div #pieChart style="max-width: 900px; height: 500px;"></div>
+  <div #pieChart style="width: 600px; height: 400px;"></div>
   <span class="badge badge-primary mr-3">Total Countries  {{searchList && searchList.length ?  searchList.length : 0}}</span>
 
    <app-search-list *ngIf='!!searchList' [searchList]='searchList'></app-search-list>
