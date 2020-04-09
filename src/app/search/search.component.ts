@@ -21,14 +21,25 @@ export class SearchComponent implements OnInit, AfterViewInit {
  this.search(null);
 this.getIndiaData();
   }
-
+getdist(res) {
+  const dist = {}
+  if(res) {
+    Object.keys(res).forEach(i => {
+      if(i) {
+        dist[i] = `${res[i]['confirmed']}`
+      }
+    });
+  }
+  return JSON.stringify(dist);
+  
+}
   getIndiaData() {
     this.india = [];
     this.coronaService.getAll().subscribe((res) => {
       this.indData = res['total_values']
-      this.india.push(['code', 'state', 'Cases'])
+      this.india.push(['code', 'description','Cases'])
         Object.keys(res['state_wise']).forEach((state) => {
-          if(res['state_wise'][state]['statecode'] && res['state_wise'][state]['confirmed']) this.india.push([`IN-${res['state_wise'][state]['statecode']}`, state, Number(res['state_wise'][state]['confirmed'])]);
+          if(res['state_wise'][state]['statecode'] && res['state_wise'][state]['confirmed']) this.india.push([`IN-${res['state_wise'][state]['statecode']}`,this.getdist(res['state_wise'][state]['district'] ? res['state_wise'][state]['district'] : undefined), Number(res['state_wise'][state]['confirmed'])]);
     })
     this.showIndia();
        })
@@ -37,6 +48,7 @@ this.getIndiaData();
       const data = google.visualization.arrayToDataTable(this.india);    
       const chart1 = new google.visualization.GeoChart(this.ind.nativeElement);  
     var options1 = { 
+      tooltip: { isHtml: true },
       region: 'IN',
       displayMode: 'regions',
       resolution: 'provinces',
@@ -76,7 +88,8 @@ google.charts.load('45', { mapsApiKey: myMapsApiKey, packages: [ 'corechart','ge
     this.spinner = true;
     this.coronaService.getCountries().subscribe((res: any[]) => {
       this.searchList = res['response'];
-      this.searchList = this.searchList.sort((a,b) => b.cases.total - a.cases.total);
+      this.searchList = this.searchList.filter((res) => !(/^-/.test(res.country)))
+                                        .sort((a,b) => b.cases.total - a.cases.total);
       this.totalWorld = this.searchList.shift();
       this.searchList.shift();
       if(data) {
