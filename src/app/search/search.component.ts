@@ -53,7 +53,6 @@ getdist(res) {
       tooltip: { isHtml: true },
       region: 'IN',
       displayMode: 'regions',
-      autoZoomAfterClick: true,
       resolution: 'provinces',
       datalessRegionColor: 'transparent',
         colorAxis: {colors: ['lightgreen', 'white','orange']}
