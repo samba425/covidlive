@@ -18,6 +18,8 @@ export class SearchComponent implements OnInit, AfterViewInit {
   totalWorld;
   indData;
   constructor(private coronaService: GitService) {
+    // AIzaSyCU-9VkLPlvT7R1E3oDhFzxvcrT4GoLVSc
+   google.charts.load('45', { mapsApiKey: 'SomeMagicToSetThis', packages: [ 'corechart','geochart' ]});
  this.search(null);
 this.getIndiaData();
   }
@@ -51,12 +53,13 @@ getdist(res) {
       tooltip: { isHtml: true },
       region: 'IN',
       displayMode: 'regions',
+      autoZoomAfterClick: true,
       resolution: 'provinces',
       datalessRegionColor: 'transparent',
         colorAxis: {colors: ['lightgreen', 'white','orange']}
     }
     chart1.draw(data,options1);
-    google.visualization.events.addListener(chart1, 'regionClick',this.myClickHandler); 
+    // google.visualization.events.addListener(chart1, 'regionClick',this.myClickHandler); 
   }
   myClickHandler(data) {
 // console.log('323213123',data)
@@ -78,10 +81,7 @@ getdist(res) {
   }
   
     ngAfterViewInit() {
-      // google.charts.load('current', { 'packages': ['corechart']});
-      var myMapsApiKey = 'SomeMagicToSetThis';
-      // AIzaSyCU-9VkLPlvT7R1E3oDhFzxvcrT4GoLVSc
-google.charts.load('45', { mapsApiKey: myMapsApiKey, packages: [ 'corechart','geochart' ]});
+      
     }
   search(data) {
     this.country = []
