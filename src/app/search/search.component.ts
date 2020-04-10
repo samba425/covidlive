@@ -87,10 +87,26 @@ getdist(res) {
     this.spinner = true;
     this.coronaService.getCountries().subscribe((res: any[]) => {
       this.searchList = res['response'];
-      this.searchList = this.searchList.filter((res) => !(/^-/.test(res.country)))
-                                        .sort((a,b) => b.cases.total - a.cases.total);
-      this.totalWorld = this.searchList.shift();
-      this.searchList.shift();
+      const newList = [];
+      ["Europe","Asia","South-America","Oceania","North-America","Africa","Diamond-Princess-"].forEach((res) => {
+        const index = this.searchList.findIndex((country) => country.country === res);
+        newList.push(this.searchList[index]);
+        this.searchList.splice(index,1)
+      });
+      console.log('totalll',newList)
+     const totalll =  newList.reduce((a,b) => {
+        return {
+          total: a.total + b.cases.total,
+          new: a.new + Number(b.cases.new ? b.cases.new.split('+')[1]: 0),
+          active: a.active + b.cases.active,
+          recoverd: a.recoverd + Number(b.cases.recovered),
+          deaths:a.deaths+ b.deaths.total,
+          newD: a.newD + Number(b.deaths.new ? b.deaths.new.split('+')[1] : 0)
+        };
+      },{total: 0,new: 0,active: 0,recoverd: 0,deaths:0,newD:0});
+      this.totalWorld = totalll;
+      this.searchList = this.searchList.sort((a,b) => b.cases.total - a.cases.total);
+      // this.searchList.shift();
       if(data) {
         this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.value.country.toLowerCase()));
       }

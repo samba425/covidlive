@@ -2,30 +2,30 @@
 
 <div *ngIf='totalWorld' class="world col-12">
   <div class="row">
-    <div class="col-3">      
+    <div class="col-3 text-center">      
         <div class="tile">
-          <div class="title" title="Total Confirmed Cases">Total</div>
-          <div class=" text-success active">{{totalWorld.cases.total | number}}</div>
-          <div class=" text-success active">{{totalWorld.cases.new}}</div>
+          <div class="title" title="Total Confirmed Cases">Total Cases</div>
+          <div class=" text-primary active">{{totalWorld.total | number}}</div>
+          <div class=" text-primary active">+{{totalWorld.new | number}}</div>
         </div>
     </div>
-    <div class="col-3">
+    <div class="col-3 text-center">
         <div class="tile">
           <div class="title" title="Active cases">Active</div>
-          <div class="text-primary active">{{totalWorld.cases.active | number}}</div>
+          <div class="text-info active">{{totalWorld.active | number}}</div>
         </div>
     </div>
-    <div class="col-3">
+    <div class="col-3 text-center">
         <div class="tile">
           <div class="title" title="Recovered cases">Recovered</div>
-          <div class="text-info recovered">{{totalWorld.cases.recovered | number}}</div>
+          <div class="text-success recovered">{{totalWorld.recoverd | number}}</div>
       </div>
     </div>
-    <div class="col-3">
+    <div class="col-3 text-center">
         <div class="tile">
           <div class="title" title="Recovered cases">Deaths</div>
-          <div class="text-danger recovered">{{totalWorld.deaths.total | number}}</div>
-          <div class="text-danger recovered">{{totalWorld.deaths.new}}</div>
+          <div class="text-danger recovered">{{totalWorld.deaths | number}}</div>
+          <div class="text-danger recovered">+{{totalWorld.newD | number}}</div>
       </div>
     </div>
   </div>
@@ -52,9 +52,9 @@
 <div class="col-md-6 col-sm-12">
   <div *ngIf='indData' class="m-3">
     <h6 class="text-muted">India</h6>
-    <span class="badge badge-pill badge-primary m-1">Total cases: {{indData.confirmed}}</span>
-    <span class="badge badge-pill badge-success  m-1">Recovered: {{indData.recovered}}</span>
-    <span class="badge badge-pill badge-danger  m-1">Deaths: {{indData.deaths}}</span>
+    <span class="badge badge-pill badge-primary m-1">Total cases: {{indData.confirmed | number}}</span>
+    <span class="badge badge-pill badge-success  m-1">Recovered: {{indData.recovered | number}}</span>
+    <span class="badge badge-pill badge-danger  m-1">Deaths: {{indData.deaths | number}}</span>
     <!-- <span class="badge badge-pill badge-warning  m-1">Recovered: {{indData.recovered}}</span> -->
     <span class="cursor badge badge-pill badge-info  m-1" (click)='getIndiaData()'>Refresh India Data</span>
   </div>
@@ -63,10 +63,10 @@
 <div class="col-md-6 col-sm-12">
   <div *ngIf='totalWorld' class="m-3">
   <h6 class="text-muted">World</h6>
-    <span class="badge badge-pill badge-primary m-1">Total cases: {{totalWorld.cases.total | number}}</span>
-    <span class="badge badge-pill badge-success m-1 ">Recovered: {{totalWorld.cases.recovered | number}}</span>
+    <span class="badge badge-pill badge-primary m-1">Total cases: {{totalWorld.total | number}}</span>
+    <span class="badge badge-pill badge-success m-1 ">Recovered: {{totalWorld.recoverd | number}}</span>
     <!-- <span class="badge badge-pill badge-danger ">Deaths: {{indData.deaths}}</span> -->
-    <span class="badge badge-pill badge-danger m-1">Deaths: {{totalWorld.deaths.total  | number}}</span>
+    <span class="badge badge-pill badge-danger m-1">Deaths: {{totalWorld.deaths  | number}}</span>
     <span class="cursor badge badge-pill badge-info " (click)='search(null)'>Refresh world Data</span>
   </div>
   <div #map  style="width:100%; height: 400px;"></div>

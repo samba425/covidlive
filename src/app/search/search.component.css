@@ -5,17 +5,9 @@
 
 
 .world {
-    background: #9999;
+    background: #99999957;
     border: 2px solid white;
     border-radius: 11px;
     margin: 1%;
     padding: 3%;
-}
-.google-visualization-tooltip { max-width: 10% !important; padding: 1px !important; font-size:10px;} 
-.google-visualization-tooltip-item-list { padding: 0px !important;  margin:1px !important;}
-.google-visualization-tooltip-item      { overflow:hidden; max-width:210px !important;
-height:10px !important; padding: 0px !important;    margin:1px !important; font-size:9px;   white-space:nowrap;}
-.google-visualization-tooltip-item span:nth-child(2) { display:inline-block; width:150px
-!important; text-align:right !important; }
-.google-visualization-tooltip-item span:nth-child(3) { display:inline-block; width:50px
-!important; text-align:right !important; background-color:white;};
+} 
