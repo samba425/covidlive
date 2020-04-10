@@ -1,35 +1,6 @@
 
 
-<div *ngIf='totalWorld' class="world col-12">
-  <div class="row">
-    <div class="col-3 text-center">      
-        <div class="tile">
-          <div class="title" title="Total Confirmed Cases">Total Cases</div>
-          <div class=" text-primary active">{{totalWorld.total | number}}</div>
-          <div class=" text-primary active">+{{totalWorld.new | number}}</div>
-        </div>
-    </div>
-    <div class="col-3 text-center">
-        <div class="tile">
-          <div class="title" title="Active cases">Active</div>
-          <div class="text-info active">{{totalWorld.active | number}}</div>
-        </div>
-    </div>
-    <div class="col-3 text-center">
-        <div class="tile">
-          <div class="title" title="Recovered cases">Recovered</div>
-          <div class="text-success recovered">{{totalWorld.recoverd | number}}</div>
-      </div>
-    </div>
-    <div class="col-3 text-center">
-        <div class="tile">
-          <div class="title" title="Recovered cases">Deaths</div>
-          <div class="text-danger recovered">{{totalWorld.deaths | number}}</div>
-          <div class="text-danger recovered">+{{totalWorld.newD | number}}</div>
-      </div>
-    </div>
-  </div>
-</div>
+<app-totaldeatils *ngIf='totalWorld' [totalWorld]='totalWorld'></app-totaldeatils>
 
  <form class='m-1' #user="ngForm" (ngSubmit)='search(user)' >
     <div class="row">
@@ -40,7 +11,6 @@
             <button class="btn btn-primary mr-1">Search</button>
         </div>
     </div>
-  <!-- <span class="cursor badge badge-info p-1" (click)='search(null)'>Refresh world Data</span> -->
    </form>
    <div *ngIf='spinner' class="d-flex justify-content-center">
     <div class="spinner-border text-primary" role="status">
@@ -55,7 +25,6 @@
     <span class="badge badge-pill badge-primary m-1">Total cases: {{indData.confirmed | number}}</span>
     <span class="badge badge-pill badge-success  m-1">Recovered: {{indData.recovered | number}}</span>
     <span class="badge badge-pill badge-danger  m-1">Deaths: {{indData.deaths | number}}</span>
-    <!-- <span class="badge badge-pill badge-warning  m-1">Recovered: {{indData.recovered}}</span> -->
     <span class="cursor badge badge-pill badge-info  m-1" (click)='getIndiaData()'>Refresh India Data</span>
   </div>
   <div #ind style="width:100%; height: 400px;"></div>
@@ -65,7 +34,6 @@
   <h6 class="text-muted">World</h6>
     <span class="badge badge-pill badge-primary m-1">Total cases: {{totalWorld.total | number}}</span>
     <span class="badge badge-pill badge-success m-1 ">Recovered: {{totalWorld.recoverd | number}}</span>
-    <!-- <span class="badge badge-pill badge-danger ">Deaths: {{indData.deaths}}</span> -->
     <span class="badge badge-pill badge-danger m-1">Deaths: {{totalWorld.deaths  | number}}</span>
     <span class="cursor badge badge-pill badge-info " (click)='search(null)'>Refresh world Data</span>
   </div>

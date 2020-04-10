@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { TotaldeatilsComponent } from './totaldeatils/totaldeatils.component';
 
  @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     SearchListComponent,
     UserDetailsComponent,
     HeaderComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TotaldeatilsComponent
   ],
   imports: [
     BrowserModule,
