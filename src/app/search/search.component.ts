@@ -93,7 +93,6 @@ getdist(res) {
         newList.push(this.searchList[index]);
         this.searchList.splice(index,1)
       });
-      console.log('totalll',newList)
      const totalll =  newList.reduce((a,b) => {
         return {
           total: a.total + b.cases.total,
@@ -106,7 +105,7 @@ getdist(res) {
       },{total: 0,new: 0,active: 0,recoverd: 0,deaths:0,newD:0});
       this.totalWorld = totalll;
       this.searchList = this.searchList.sort((a,b) => b.cases.total - a.cases.total);
-      // this.searchList.shift();
+      this.searchList.shift();
       if(data) {
         this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.value.country.toLowerCase()));
       }
