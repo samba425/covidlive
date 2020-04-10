@@ -106,10 +106,11 @@ getdist(res) {
       this.totalWorld = totalll;
       this.searchList = this.searchList.sort((a,b) => b.cases.total - a.cases.total);
       this.searchList.shift();
+      this.country.push(['Country', 'Cases'])
       if(data) {
         this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.value.country.toLowerCase()));
+        this.country.push(['World',this.totalWorld.total-this.searchList.reduce((a,b) =>   a + b.cases.total,0)]);     
       }
-      this.country.push(['Country', 'Cases'])
       this.searchList.forEach((element,i) => {
         if(element.country === "USA") {          
           this.country.push(["United States",element.cases.total]);
