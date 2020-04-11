@@ -1,16 +1,5 @@
-.graphPanel .summary .container.confirmed {
-    border-top: 4px solid #DE3700;
-    border-top-left-radius: 3px;
-}
 
- 
- 
-.graphPanel .summary .container.active {
-    border-top: 4px solid #F4C363;
-}
- 
-.graphPanel .summary .container {
-    padding: 24px 0;
-    margin: 0;
-    text-align: center;
+img {
+    width: -webkit-fill-available;
+    max-width: 100%
 }

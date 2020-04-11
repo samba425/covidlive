@@ -107,7 +107,7 @@ getdist(res) {
       this.searchList = this.searchList.sort((a,b) => b.cases.total - a.cases.total);
       this.searchList.shift();
       this.country.push(['Country', 'Cases'])
-      if(data) {
+      if(data && data.value.country && data.value.country.length > 0) {
         this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.value.country.toLowerCase()));
         this.country.push(['World',this.totalWorld.total-this.searchList.reduce((a,b) =>   a + b.cases.total,0)]);     
       }
