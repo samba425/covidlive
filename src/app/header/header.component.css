@@ -1,0 +1,9 @@
+.widthfull {
+    width: 15vw;
+}
+
+@media only screen and (max-width: 600px) {
+    .widthfull {
+        width: 90vw;
+    }
+  }
