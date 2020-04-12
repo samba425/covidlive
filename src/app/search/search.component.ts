@@ -1,5 +1,6 @@
 import { Component, AfterViewInit,OnInit, ElementRef, ViewChild } from '@angular/core';
 import { GitService } from '../git.service';
+import {  newContryList } from './countrylist';
 declare var google: any;
 
 @Component({
@@ -12,6 +13,7 @@ export class SearchComponent implements OnInit, AfterViewInit {
   @ViewChild('map',{ static: false }) map: ElementRef
   @ViewChild('ind',{ static: false }) ind: ElementRef
   searchList;
+  filteredCountry = [];
   spinner = false;
   country = []
   india = []
@@ -58,19 +60,18 @@ getdist(res) {
         colorAxis: {colors: ['lightgreen', 'white','orange']}
     }
     chart1.draw(data,options1);
-    // google.visualization.events.addListener(chart1, 'regionClick',this.myClickHandler); 
   }
   myClickHandler(data) {
 // console.log('323213123',data)
   }
-    drawChart() {  
-      const data = google.visualization.arrayToDataTable(this.country);
-      const options = {
-        title: 'Covid Cases',
-        legend: {position: 'top'},
-        datalessRegionColor: 'transparent',
-          colorAxis: {colors: ['lightgreen', 'lightpink','orange','lightyellow','green','grey','skyblue']}
-      };
+    drawChart(code) {  
+      const data = google.visualization.arrayToDataTable(this.country); 
+       var options = { 
+      tooltip: { isHtml: true },
+      region: code ? code.code: null,
+      datalessRegionColor: 'transparent',
+      colorAxis: {colors: ['lightgreen', 'lightpink','orange','lightyellow','green','grey','skyblue']}
+    }
     
       const chart = new google.visualization.PieChart(this.pieChart.nativeElement);  
       const chart1 = new google.visualization.GeoChart(this.map.nativeElement);
@@ -81,6 +82,12 @@ getdist(res) {
   
     ngAfterViewInit() {
       
+    }
+
+    onSearch(data) {
+      if(data.length > 1) {
+       this.filteredCountry = newContryList.filter((get) => get.name.toLocaleLowerCase().includes(data.toLocaleLowerCase()));
+      }
     }
   search(data) {
     this.country = []
@@ -107,11 +114,11 @@ getdist(res) {
       this.searchList = this.searchList.sort((a,b) => b.cases.total - a.cases.total);
       this.searchList.shift();
       this.country.push(['Country', 'Cases'])
-      if(data && data.value.country && data.value.country.length > 0) {
-        this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.value.country.toLowerCase()));
+      if(data) {
+        this.searchList = this.searchList.filter((res) => res.country.toLowerCase().includes(data.name.toLowerCase()));
         this.country.push(['World',this.totalWorld.total-this.searchList.reduce((a,b) =>   a + b.cases.total,0)]);     
       }
-      this.searchList.forEach((element,i) => {
+      this.searchList.forEach((element,i) => { 
         if(element.country === "USA") {          
           this.country.push(["United States",element.cases.total]);
         } else {
@@ -119,8 +126,8 @@ getdist(res) {
         }
       });
     this.spinner = false;
-    this.drawChart();
-    if(data) data.reset();
+    this.drawChart(data);
+    this.filteredCountry = [];
     },err => this.spinner = false);
   }
 

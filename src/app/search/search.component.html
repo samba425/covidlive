@@ -2,16 +2,17 @@
 
 <app-totaldeatils *ngIf='totalWorld' [totalWorld]='totalWorld'></app-totaldeatils>
 
- <form class='m-1' #user="ngForm" (ngSubmit)='search(user)' >
+ <form class='m-1' autocomplete="off" >
     <div class="row">
-        <div class="form-group  col-8 ml-4">
-            <input type="text" name='country' placeholder="Country Search" class="form-control" ngModel>
-        </div>
-        <div class="col-2 mr-1">   
-            <button class="btn btn-primary mr-1">Search</button>
+        <div class="form-group col">
+            <input type="text" name='country' #name  (keyup)='onSearch(name.value)' 
+            placeholder="Country Search" class="form-control">
         </div>
     </div>
    </form>
+   <div class="row">
+        <span *ngFor='let item of filteredCountry' (click)='search(item);name.value = ""' class="cursor badge badge-warning m-1">{{item.name}}</span>
+   </div>
    <div *ngIf='spinner' class="d-flex justify-content-center">
     <div class="spinner-border text-primary" role="status">
         <span class="sr-only">Loading...</span>
