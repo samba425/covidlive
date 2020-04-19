@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { TotaldeatilsComponent } from './totaldeatils/totaldeatils.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
  @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { TotaldeatilsComponent } from './totaldeatils/totaldeatils.component';
     UserDetailsComponent,
     HeaderComponent,
     SpinnerComponent,
-    TotaldeatilsComponent
+    TotaldeatilsComponent,
+    AboutusComponent
   ],
   imports: [
     BrowserModule,

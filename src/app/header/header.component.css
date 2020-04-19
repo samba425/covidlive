@@ -5,6 +5,16 @@
 .margin1 {
     margin: 1px;
 }
+
+ul{
+    display: flex;
+     cursor: pointer;
+}
+ul h6 {
+    margin-right: 5px;
+    padding-right: 5px;
+}
+
 @media only screen and (max-width: 600px) {
     .widthfull {
         width: 90vw;
