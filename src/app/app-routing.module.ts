@@ -2,10 +2,11 @@ import { HeaderComponent } from './header/header.component';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { SearchComponent } from './search/search.component';
 
 
 const routes: Routes = [
-  {path: 'header', component: HeaderComponent },
+  {path: 'header', component: SearchComponent },
   {path: 'aboutus', component: AboutusComponent }
 ];
 

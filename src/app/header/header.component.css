@@ -10,6 +10,11 @@ ul{
     display: flex;
      cursor: pointer;
 }
+
+.cursor {
+    cursor: pointer;
+
+}
 ul h6 {
     margin-right: 5px;
     padding-right: 5px;
