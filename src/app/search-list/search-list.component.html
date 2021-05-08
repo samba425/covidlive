@@ -6,6 +6,7 @@
       <th scope="col">#</th>
       <th scope="col">Country</th>
       <th scope="col" (click)="sort('cases','total',1)">Cases&uarr;&darr;</th>
+      <th scope="col" (click)="sort('cases','total',1)">New Cases&uarr;&darr;</th>
       <!-- <th scope="col">Today Cases</th> -->
       <th scope="col" (click)="sort('deaths','total',2)">Deaths&uarr;&darr;</th>
       <!-- <th scope="col">Today Deaths</th> -->
@@ -18,8 +19,9 @@
     <tr *ngFor = "let item of searchList;let i =index;trackBy: trackByFn">
       <th scope="row">{{i+1}}</th>
       <td>{{item.country}}</td>
-      <td class="text-success">{{item.cases.total | number}}</td>
-      <!-- <td class="text-success"><span></span>{{item.cases.new}}</td> -->
+      <td class="text-success">{{item.cases.total | number}} </td>
+      <!-- <td class="text-success">{{item.cases.new}}</td> -->
+      <td class="text-success"><span *ngIf="item.cases.new">+</span>{{item.cases.new | number}}</td>
       <td class="text-danger">{{item.deaths.total}}</td>
       <!-- <td class="text-danger"><span *ngIf='item.deaths'></span>{{item.deaths.new}}</td> -->
       <td>{{item.cases.active}}</td>
